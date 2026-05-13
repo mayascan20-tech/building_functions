@@ -4,7 +4,7 @@ format: html
 editor: visual
 ---
 
-#### Define the contract
+#### Defining the contract
 
 *Inputs*:
 
@@ -12,11 +12,15 @@ editor: visual
 
 -   N -the total number of individuals of all species (this input is a single value calculated within the function)
 
-*Output*: D - Simpson's Index, ranges between 0 and 1.
+*Output*: D - Simpson's Diversity Indices, ranges between 0 and 1.
 
--   Lower values indicate lower diversity
+-   Higher values indicate lower diversity (with this version of the equation)
+-   0 represents infinite diversity
+-   1 indicates no diversity
 
-*Parameters*: *ncount,* each number indicating the number of individuals observed for one species. Multiple values represent multiple species i.e., simpsons_index(c(15,20,30)) represents 3 species with 15, 20, and 30 individuals each.
+*Parameters*: *ncount,* each number indicating the number of individuals observed for one species. Multiple values represent multiple species.
+
+-   i.e., `simpsons_index(c(15,20,30))` represents 3 species with 15, 20, and 30 individuals each
 
 #### Implement the function in R
 
@@ -33,14 +37,23 @@ simpsons_index = function(ncount) {
 D = sum((ncount/N)^2)
 return(D)
 }
-
 ```
+
+#### Testing the Function
 
 ```{r}
-simpsons_index(c(3,9))
-```
 
-```{simpsons_index(3,9)}
+# Test 1: Single species
+simpsons_index(c(20))
+## expected output D = 1 (no diversity)
 
+# Test 2: Two species, equally distributed 
+simpsons_index(c(20,20))
+## expected output is a moderate D (0.5)
 
+# Test 3: Randomly sampled data with 5 species 
+set.seed(100)
+species_counts <- sample(1:100, size = 5, replace = TRUE)
+simpsons_index(species_counts)
+## expected output - varies between sample data 
 ```
