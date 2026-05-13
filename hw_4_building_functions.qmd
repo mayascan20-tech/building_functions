@@ -1,6 +1,7 @@
 ---
 title: "hw_4_building_functions"
-format: html
+author: Maya Scanlon
+format: pdf
 editor: visual
 ---
 
