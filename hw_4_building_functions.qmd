@@ -1,0 +1,46 @@
+---
+title: "hw_4_building_functions"
+format: html
+editor: visual
+---
+
+#### Define the contract
+
+*Inputs*:
+
+-   *ncount -* total number of individuals of each species (these inputs could be multiple values)
+
+-   N -the total number of individuals of all species (this input is a single value calculated within the function)
+
+*Output*: D - Simpson's Index, ranges between 0 and 1.
+
+-   Lower values indicate lower diversity
+
+*Parameters*: *ncount,* each number indicating the number of individuals observed for one species. Multiple values represent multiple species i.e., simpsons_index(c(15,20,30)) represents 3 species with 15, 20, and 30 individuals each.
+
+#### Implement the function in R
+
+```{r}
+#' Simpson's Diversity Index 
+#'
+#' This function measures the probability that two individuals randomly selected from a sample will belong to the same species. 
+#' @param ncount the number of individuals of a particular species (quantity)
+#' @return Simpsons Index (D)
+
+# function definition in-line
+simpsons_index = function(ncount) {
+  N = sum(ncount)
+D = sum((ncount/N)^2)
+return(D)
+}
+
+```
+
+```{r}
+simpsons_index(c(3,9))
+```
+
+```{simpsons_index(3,9)}
+
+
+```
